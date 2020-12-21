@@ -8,7 +8,7 @@ import { DataStore } from '@aws-amplify/datastore'
 import { Country } from './models'
 
 
-const initialState = { alpha2Code: 'in', name: '' }
+const initialState = { alpha2Code: 'bc', name: 'TeswBC' }
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
   }
 
   async function createCountry() {
-    if (!formState.name) return
+    //if (!formState.name) return
     await DataStore.save(new Country({ ...formState }))
     updateFormState(initialState)
   }
