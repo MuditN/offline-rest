@@ -3,12 +3,12 @@ import config from './aws-exports'
 Amplify.configure(config)
 
 import React, { useState, useEffect } from 'react'
-import {Text, View, TextInput, Button } from 'react-native'
+import { Text, View, TextInput, Button } from 'react-native'
 import { DataStore } from '@aws-amplify/datastore'
-import {Country} from './models'
+import { Country } from './models'
 
 
-const initialState = { alpha2Code: 'in'}
+const initialState = { alpha2Code: 'in', name: '' }
 
 function App() {
 
@@ -22,22 +22,29 @@ function App() {
     return () => subscription.unsubscribe()
   })
 
-  function onChangeText(key, value){
+  function onChangeText(key, value) {
     updateFormState({ ...formState, [key]: value })
   }
 
-  async function fetchCountry(){
+  async function fetchCountry() {
     const country = await DataStore.query(Country)
-    updateCountry(country)  
+    updateCountry(country)
   }
 
-  async function getCountry(){
+  async function getCountry() {
     if (!formState.alpha2Code) return
-    await DataStore.query(Country, formState.alpha2Code) 
-    await DataStore.save(new Country({ ...formState }))
+    console.log(formState.alpha2Code)
+    const data = await DataStore.query(Country, c => c.alpha2Code("eq", formState.alpha2Code))
+    console.log(data)
+    if (country.find((element) => {
+      return element.alph2Code === formState.alpha2Code;
+    }) === null) {
+      country.push(data[0])
+      updateCountry(country)
+    }
   }
 
-  async function createCountry(){
+  async function createCountry() {
     if (!formState.name) return
     await DataStore.save(new Country({ ...formState }))
     updateFormState(initialState)
@@ -47,14 +54,14 @@ function App() {
     <View style={container}>
       <Text style={heading}>Real Time Country Board</Text>
       <TextInput
-        onChangeText={v => onChangeText('alph2Code', v)}
-        placeholder='Country alph2Code'
-        value={formState.alph2Code}
+        onChangeText={v => onChangeText('alpha2Code', v)}
+        placeholder='Country alpha2Code'
+        value={formState.alpha2Code}
         style={input}
         autoCapitalize='none'
       />
-      <Text>alph2Code: <Text style={{fontWeight: 'bold', alph2Code: formState.alph2Code}}>{formState.alph2Code}</Text></Text>
-      <Button onPress={getCountry()} name='Create Country' />
+      <Text>alph2Code: <Text style={{ fontWeight: 'bold', alph2Code: formState.alph2Code }}>{formState.alph2Code}</Text></Text>
+      <Button onPress={getCountry} name='Get Country' />
       {
         country.map(Country => (
           <View key={Country.alpha2Code}>
@@ -64,6 +71,7 @@ function App() {
           </View>
         ))
       }
+      <Button onPress={createCountry} name='Create Country' />
     </View>
   )
 }
@@ -73,6 +81,6 @@ const input = { marginBottom: 10, padding: 7, backgroundColor: '#ddd' }
 const heading = { fontWeight: 'normal', fontSize: 40 }
 const countryBg = { backgroundColor: 'white' }
 const countryStyle = { padding: 20, marginTop: 7, borderRadius: 4 }
-const countryName = { margin: 0, padding: 9, fontSize: 20  }
+const countryName = { margin: 0, padding: 9, fontSize: 20 }
 
 export default App
