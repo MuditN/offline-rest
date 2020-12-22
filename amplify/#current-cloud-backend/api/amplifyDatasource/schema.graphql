@@ -1,0 +1,4 @@
+type Country @model {
+  name: String!
+  alpha2Code: String!
+}

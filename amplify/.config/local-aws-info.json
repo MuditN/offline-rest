@@ -1,0 +1,7 @@
+{
+    "dev": {
+        "configLevel": "project",
+        "useProfile": false,
+        "awsConfigFilePath": "C:\\Users\\tidum\\.amplify\\awscloudformation\\2xt3CpcuLz"
+    }
+}
