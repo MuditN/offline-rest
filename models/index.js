@@ -4,8 +4,9 @@ import { schema } from './schema';
 
 
 
-const { Country } = initSchema(schema);
+const { Request, Response } = initSchema(schema);
 
 export {
-  Country
+  Request,
+  Response
 };

@@ -1,4 +1,9 @@
-type Country @model {
+type Request @model {
+  name: String!
+  alpha2Code: String!
+}
+
+type Response @model {
   name: String!
   alpha2Code: String!
 }

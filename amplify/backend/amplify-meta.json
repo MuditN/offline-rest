@@ -22,8 +22,8 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "description": "",
-              "apiKeyExpirationDays": 7
+              "apiKeyExpirationDays": 365,
+              "description": "api key"
             }
           }
         },
@@ -35,8 +35,52 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiamplifyDatasource"
       },
-      "lastPushTimeStamp": "2020-12-21T10:35:02.055Z",
-      "lastPushDirHash": "UM9d9A3j9IC/3evgmJ0Pb3Wp3cU="
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "lastPushDirHash": "IOt2Zv8h25i00YAZajVDjuYrLoY="
+    }
+  },
+  "function": {
+    "getCountryByAlpha2Code": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "lastBuildTimeStamp": "2020-12-24T11:04:04.712Z",
+      "lastPackageTimeStamp": "2020-12-24T11:04:04.751Z",
+      "distZipFilename": "getCountryByAlpha2Code-724e6d4f634948335755-build.zip",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/function/getCountryByAlpha2Code-cloudformation-template.json",
+        "logicalId": "functiongetCountryByAlpha2Code"
+      },
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "output": {
+        "Region": "us-west-2",
+        "Arn": "arn:aws:lambda:us-west-2:457128868865:function:getCountryByAlpha2Code-dev",
+        "Name": "getCountryByAlpha2Code-dev",
+        "LambdaExecutionRole": "offlinerestLambdaRole2eabff42-dev"
+      },
+      "lastPushDirHash": "gtm/QeR2rwDEgkVKJdM0FOjpbrc="
+    }
+  },
+  "auth": {
+    "cognitoc783b576": {
+      "service": "Cognito",
+      "serviceType": "managed",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/auth/cognitoc783b576-cloudformation-template.yml",
+        "logicalId": "authcognitoc783b576"
+      },
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "output": {
+        "AppClientSecret": "ts154git5mr1jv1aqu75hnkdruui6evigefegpriougapmnbnen",
+        "UserPoolId": "us-west-2_5dzjpZD6u",
+        "AppClientIDWeb": "4skereplin789gdjs38pjv80n7",
+        "AppClientID": "5piqfj9ttk3d75eltn78jot9b9",
+        "IdentityPoolId": "us-west-2:b9d8398f-a047-45b3-9d9d-601d15e850e8",
+        "IdentityPoolName": "offline_rest_identitypool_e15041d0__dev",
+        "UserPoolName": "offline_rest_userpool_e15041d0"
+      },
+      "lastPushDirHash": "CwpLTFxawqWNObPN4X/4IPpgK9k="
     }
   }
 }

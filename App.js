@@ -5,19 +5,22 @@ Amplify.configure(config);
 import React, { useState, useEffect } from "react";
 import { Text, View, TextInput, Button } from "react-native";
 import { DataStore } from "@aws-amplify/datastore";
-import { Country } from "./models";
+import { Request, Response } from "./models";
 
 const initialState = { alpha2Code: "bc", name: "TeswBC" };
 
 function App() {
   const [formState, updateFormState] = useState(initialState);
-  const [country, updateCountry] = useState([]);
+  const [response, updateResponse] = useState([]);
+  const [request, updateRequest] = useState([]);
 
   useEffect(() => {
-    fetchCountry();
-    const subscription = DataStore.observe(Country).subscribe(() =>
-      fetchCountry()
-    );
+    fetchRequest();
+    const subscription = DataStore.observe(Request).subscribe(() =>
+    msg => {
+      console.log(msg.name, msg.opType, msg.element);
+      fetchRequest();
+    });
     return () => subscription.unsubscribe();
   });
 
@@ -25,31 +28,35 @@ function App() {
     updateFormState({ ...formState, [key]: value });
   }
 
-  async function fetchCountry() {
-    const country = await DataStore.query(Country);
-    updateCountry(country);
+  async function fetchRequest() {
+    const response = await DataStore.query(Request);
+    updateResponse(response);
+  }
+  async function fetchResponse() {
+    const response = await DataStore.query(Response);
+    updateResponse(response);
   }
 
-  async function getCountry() {
+  async function getRequest() {
     if (!formState.alpha2Code) return;
     console.log(formState.alpha2Code);
-    const data = await DataStore.query(Country, (c) =>
+    const data = await DataStore.query(Request, (c) =>
       c.alpha2Code("eq", formState.alpha2Code)
     );
     console.log(data);
     if (
-      country.find((element) => {
+      response.find((element) => {
         return element.alph2Code === formState.alpha2Code;
       }) === null
     ) {
-      country.push(data[0]);
-      updateCountry(country);
+      response.push(data[0]);
+      updateResponse(response);
     }
   }
 
-  async function createCountry() {
+  async function createRequest() {
     //if (!formState.name) return
-    await DataStore.save(new Country({ ...formState }));
+    await DataStore.save(new Response({ ...formState }));
     updateFormState(initialState);
   }
 
@@ -69,15 +76,15 @@ function App() {
           {formState.alph2Code}
         </Text>
       </Text>
-      <Button onPress={getCountry} title="Get Country" />
-      {country.map((Country) => (
-        <View key={Country.alpha2Code}>
+      <Button onPress={getRequest} title="Get Country" />
+      {request.map((Request) => (
+        <View key={Request.alpha2Code}>
           <View style={countryBg}>
-            <Text style={countryName}>{Country.name}</Text>
+            <Text style={countryName}>{Request.name}</Text>
           </View>
         </View>
       ))}
-      <Button onPress={createCountry} title="Create Country" />
+      <Button onPress={createRequest} title="Create Country" />
     </View>
   );
 }
