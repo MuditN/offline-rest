@@ -15,12 +15,13 @@ function App() {
   const [request, updateRequest] = useState([]);
 
   useEffect(() => {
-    fetchRequest();
-    const subscription = DataStore.observe(Request).subscribe(() =>
-    msg => {
-      console.log(msg.name, msg.opType, msg.element);
-      fetchRequest();
-    });
+    fetchResponse();
+    const subscription = DataStore.observe(Response).subscribe(() =>
+      msg => {
+        console.log(msg.name);
+        fetchResponse();
+      });
+
     return () => subscription.unsubscribe();
   });
 
@@ -29,8 +30,8 @@ function App() {
   }
 
   async function fetchRequest() {
-    const response = await DataStore.query(Request);
-    updateResponse(response);
+    const request = await DataStore.query(Request);
+    updateRequest(request);
   }
   async function fetchResponse() {
     const response = await DataStore.query(Response);
@@ -41,22 +42,20 @@ function App() {
     if (!formState.alpha2Code) return;
     console.log(formState.alpha2Code);
     const data = await DataStore.query(Request, (c) =>
-      c.alpha2Code("eq", formState.alpha2Code)
+      c.alpha2Code("eq", formState.alpha2Code.toUpperCase())
     );
     console.log(data);
-    if (
-      response.find((element) => {
-        return element.alph2Code === formState.alpha2Code;
-      }) === null
-    ) {
-      response.push(data[0]);
-      updateResponse(response);
+
+    if (response.filter(function(e) { return e.alpha2Code === formState.alpha2Code; }).length === 0) {
+      formState.name = data[0].name
+      createResponse();
     }
   }
 
-  async function createRequest() {
-    //if (!formState.name) return
-    await DataStore.save(new Response({ ...formState }));
+  async function createResponse() {
+    if (!formState.name) return
+    var test = await DataStore.save(new Response({ ...formState }));
+    console.log(test);
     updateFormState(initialState);
   }
 
@@ -77,14 +76,14 @@ function App() {
         </Text>
       </Text>
       <Button onPress={getRequest} title="Get Country" />
-      {request.map((Request) => (
-        <View key={Request.alpha2Code}>
+      {response.map((Response) => (
+        <View key={Response.alpha2Code}>
           <View style={countryBg}>
-            <Text style={countryName}>{Request.name}</Text>
+            <Text style={countryName}>{Response.name}</Text>
           </View>
         </View>
       ))}
-      <Button onPress={createRequest} title="Create Country" />
+      <Button onPress={createResponse} title="Create Country" />
     </View>
   );
 }
