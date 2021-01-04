@@ -5,4 +5,4 @@ GraphQL endpoint: https://jyifycun6bf4bjkh6dzmomiz2m.appsync-api.us-west-2.amazo
 GraphQL API KEY: da2-5z55rnm3gbam7kikvq6wjsie4a
 
 
-![Test Image 4](/Architecture.png 112)
+![Architecture](./Architecture.png)
