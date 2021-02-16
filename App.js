@@ -1,13 +1,14 @@
-import { DataStore,Amplify, Storage} from "aws-amplify";
+import Amplify from "@aws-amplify/core";
 import config from "./aws-exports";
+Amplify.configure(config);
 
 import React, { useState, useEffect } from "react";
 import { Text, View, TextInput, Button } from "react-native";
+import { DataStore } from "@aws-amplify/datastore";
 import { Request, Response } from "./models";
 
-Amplify.configure(config);
-const initialState = { alpha2Code: "bc", name: "TeswBC", image: null};
-const file = {file: null};
+const initialState = { alpha2Code: "bc", name: "TeswBC" };
+
 function App() {
   const [formState, updateFormState] = useState(initialState);
   const [response, updateResponse] = useState([]);
@@ -45,7 +46,7 @@ function App() {
     );
     console.log(data);
 
-    if (response.filter(function (e) { return e.alpha2Code === formState.alpha2Code; }).length === 0 && data.length > 0) {
+    if (response.filter(function(e) { return e.alpha2Code === formState.alpha2Code; }).length === 0) {
       formState.name = data[0].name
       createResponse();
     }
@@ -53,23 +54,6 @@ function App() {
 
   async function createResponse() {
     if (!formState.name) return
-    Storage.put(file.name, file, {
-      contentType: 'image/png'
-    }).then((result) => {
-      this.setState({file: URL.createObjectURL(file)})
-
-      const image = {
-        name: file.name,
-        file: {
-          bucket: config.bucket,
-          region: config.region,
-          key:'public/' + file.name
-        }
-      }
-
-      console.log(image);
-      formState.image = image;
-    })
     var test = await DataStore.save(new Response({ ...formState }));
     console.log(test);
     updateFormState(initialState);
@@ -85,13 +69,6 @@ function App() {
         style={input}
         autoCapitalize="none"
       />
-
-      <div>
-        <input type="file" name="file" onChange={(v) => {
-          file.file = v.target.files[0];
-          console.log(file.file);
-        }} />
-      </div>
       <Text>
         alph2Code:{" "}
         <Text style={{ fontWeight: "bold", alph2Code: formState.alph2Code }}>

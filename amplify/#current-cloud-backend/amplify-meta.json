@@ -22,8 +22,8 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": "key"
+              "apiKeyExpirationDays": 365,
+              "description": "api key"
             }
           }
         },
@@ -35,8 +35,33 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiamplifyDatasource"
       },
-      "lastPushTimeStamp": "2021-02-15T17:30:25.536Z",
-      "lastPushDirHash": "xLlJcpt2Mr+yUm5S04zuV6XI7yQ="
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "lastPushDirHash": "IOt2Zv8h25i00YAZajVDjuYrLoY="
+    },
+    "HTTPProtocol": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getCountryByAlpha2Code",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/HTTPProtocol-cloudformation-template.json",
+        "logicalId": "apiHTTPProtocol"
+      },
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "output": {
+        "ApiName": "HTTPProtocol",
+        "RootUrl": "https://xub8b9pnof.execute-api.us-west-2.amazonaws.com/dev",
+        "ApiId": "xub8b9pnof"
+      },
+      "lastPushDirHash": "dRjSnJmrPhtpp0t2iF1g6sVf0ZA="
     }
   },
   "function": {
@@ -51,7 +76,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/function/getCountryByAlpha2Code-cloudformation-template.json",
         "logicalId": "functiongetCountryByAlpha2Code"
       },
-      "lastPushTimeStamp": "2021-02-15T17:30:25.521Z",
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
       "output": {
         "Region": "us-west-2",
         "Arn": "arn:aws:lambda:us-west-2:457128868865:function:getCountryByAlpha2Code-dev",
@@ -70,7 +95,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/auth/cognitoc783b576-cloudformation-template.yml",
         "logicalId": "authcognitoc783b576"
       },
-      "lastPushTimeStamp": "2021-02-15T17:30:25.525Z",
+      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
       "output": {
         "AppClientSecret": "ts154git5mr1jv1aqu75hnkdruui6evigefegpriougapmnbnen",
         "UserPoolId": "us-west-2_5dzjpZD6u",
@@ -81,22 +106,6 @@
         "UserPoolName": "offline_rest_userpool_e15041d0"
       },
       "lastPushDirHash": "CwpLTFxawqWNObPN4X/4IPpgK9k="
-    }
-  },
-  "storage": {
-    "imageStorage": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-        "logicalId": "storageimageStorage"
-      },
-      "lastPushTimeStamp": "2021-02-15T17:30:25.528Z",
-      "output": {
-        "BucketName": "offline-restdev-dev",
-        "Region": "us-west-2"
-      },
-      "lastPushDirHash": "POs5t7v2qTJBFN05tt9Wp0c5B9U="
     }
   }
 }

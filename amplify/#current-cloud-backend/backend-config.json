@@ -9,12 +9,26 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": "key"
+              "apiKeyExpirationDays": 365,
+              "description": "api key"
             }
           }
         }
       }
+    },
+    "HTTPProtocol": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getCountryByAlpha2Code",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -28,12 +42,6 @@
     "cognitoc783b576": {
       "service": "Cognito",
       "serviceType": "managed",
-      "providerPlugin": "awscloudformation"
-    }
-  },
-  "storage": {
-    "imageStorage": {
-      "service": "S3",
       "providerPlugin": "awscloudformation"
     }
   }

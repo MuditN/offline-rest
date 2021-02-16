@@ -10,8 +10,9 @@
         "amplify-push": "node amplify\\scripts\\amplify-push.js"
     },
     "dependencies": {
+        "@aws-amplify/core": "^3.8.8",
+        "@aws-amplify/datastore": "^2.9.2",
         "@react-native-community/netinfo": "5.9.7",
-        "aws-amplify": "^3.3.18",
         "expo": "~40.0.0",
         "expo-status-bar": "~1.0.3",
         "graphql-tag": "^2.11.0",

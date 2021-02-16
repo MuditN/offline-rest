@@ -1,0 +1,45 @@
+{
+    "paths": [
+        {
+            "name": "/rest/v2/alpha/{alpha2Code}",
+            "lambdaFunction": "getCountryByAlpha2Code",
+            "privacy": {
+                "protected": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/rest/v2/alpha/*"
+        }
+    ],
+    "resourceName": "HTTPProtocol",
+    "apiName": "HTTPProtocol",
+    "functionArns": [
+        {
+            "lambdaFunction": "getCountryByAlpha2Code"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-offline-rest-dev-154436-authRole",
+        "unAuthRoleName": "amplify-offline-rest-dev-154436-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getCountryByAlpha2Code",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
