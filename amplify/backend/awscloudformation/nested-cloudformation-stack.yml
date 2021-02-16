@@ -78,34 +78,7 @@
           "DynamoDBBillingMode": "PAY_PER_REQUEST",
           "DynamoDBEnableServerSideEncryption": "false",
           "S3DeploymentBucket": "amplify-offline-rest-dev-154436-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/0c32e823a54858a0c774b2a94e705a72b6579c01",
-          "env": "dev"
-        }
-      }
-    },
-    "apiHTTPProtocol": {
-      "Type": "AWS::CloudFormation::Stack",
-      "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/HTTPProtocol-cloudformation-template.json",
-        "Parameters": {
-          "authRoleName": {
-            "Ref": "AuthRoleName"
-          },
-          "unauthRoleName": {
-            "Ref": "UnauthRoleName"
-          },
-          "functiongetCountryByAlpha2CodeName": {
-            "Fn::GetAtt": [
-              "functiongetCountryByAlpha2Code",
-              "Outputs.Name"
-            ]
-          },
-          "functiongetCountryByAlpha2CodeArn": {
-            "Fn::GetAtt": [
-              "functiongetCountryByAlpha2Code",
-              "Outputs.Arn"
-            ]
-          },
+          "S3DeploymentRootKey": "amplify-appsync-files/bfa224515ff87476fc05006155cde7b5bb1a8656",
           "env": "dev"
         }
       }

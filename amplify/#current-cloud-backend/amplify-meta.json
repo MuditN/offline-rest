@@ -35,33 +35,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiamplifyDatasource"
       },
-      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
-      "lastPushDirHash": "IOt2Zv8h25i00YAZajVDjuYrLoY="
-    },
-    "HTTPProtocol": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "getCountryByAlpha2Code",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ],
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/api/HTTPProtocol-cloudformation-template.json",
-        "logicalId": "apiHTTPProtocol"
-      },
-      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
-      "output": {
-        "ApiName": "HTTPProtocol",
-        "RootUrl": "https://xub8b9pnof.execute-api.us-west-2.amazonaws.com/dev",
-        "ApiId": "xub8b9pnof"
-      },
-      "lastPushDirHash": "dRjSnJmrPhtpp0t2iF1g6sVf0ZA="
+      "lastPushTimeStamp": "2021-02-16T07:59:01.526Z",
+      "lastPushDirHash": "3bZunBAfIJ+v/VtneNjP9z/rC58="
     }
   },
   "function": {
@@ -76,7 +51,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/function/getCountryByAlpha2Code-cloudformation-template.json",
         "logicalId": "functiongetCountryByAlpha2Code"
       },
-      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "lastPushTimeStamp": "2021-02-16T07:59:01.500Z",
       "output": {
         "Region": "us-west-2",
         "Arn": "arn:aws:lambda:us-west-2:457128868865:function:getCountryByAlpha2Code-dev",
@@ -95,7 +70,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-offline-rest-dev-154436-deployment/amplify-cfn-templates/auth/cognitoc783b576-cloudformation-template.yml",
         "logicalId": "authcognitoc783b576"
       },
-      "lastPushTimeStamp": "2020-12-24T11:07:59.372Z",
+      "lastPushTimeStamp": "2021-02-16T07:59:01.506Z",
       "output": {
         "AppClientSecret": "ts154git5mr1jv1aqu75hnkdruui6evigefegpriougapmnbnen",
         "UserPoolId": "us-west-2_5dzjpZD6u",

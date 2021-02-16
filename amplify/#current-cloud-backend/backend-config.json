@@ -15,20 +15,6 @@
           }
         }
       }
-    },
-    "HTTPProtocol": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "getCountryByAlpha2Code",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
   "function": {

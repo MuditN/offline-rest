@@ -15,14 +15,21 @@ function App() {
   const [request, updateRequest] = useState([]);
 
   useEffect(() => {
+    fetchRequest();
     fetchResponse();
-    const subscription = DataStore.observe(Response).subscribe(() =>
+    const subscription = DataStore.observe(Request).subscribe(() =>
+      msg => {
+        console.log(msg.name);
+        fetchRequest();
+      });
+      const subscription2 = DataStore.observe(Response).subscribe(() =>
       msg => {
         console.log(msg.name);
         fetchResponse();
       });
 
-    return () => subscription.unsubscribe();
+    return () => {subscription.unsubscribe();
+      subscription2.unsubscribe();}
   });
 
   function onChangeText(key, value) {
@@ -41,10 +48,12 @@ function App() {
   async function getRequest() {
     if (!formState.alpha2Code) return;
     console.log(formState.alpha2Code);
+    const test = await DataStore.query(Request);
+    console.log(test);
     const data = await DataStore.query(Request, (c) =>
       c.alpha2Code("eq", formState.alpha2Code.toUpperCase())
     );
-    console.log(data);
+    
 
     if (response.filter(function(e) { return e.alpha2Code === formState.alpha2Code; }).length === 0) {
       formState.name = data[0].name
