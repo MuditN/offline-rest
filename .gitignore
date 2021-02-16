@@ -16,3 +16,4 @@ web-build/
 build/
 dist/
 node_modules/
+aws-exports.js
